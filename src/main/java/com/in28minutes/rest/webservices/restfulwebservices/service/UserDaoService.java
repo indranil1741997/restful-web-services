@@ -1,5 +1,6 @@
 package com.in28minutes.rest.webservices.restfulwebservices.service;
 
+import com.in28minutes.rest.webservices.restfulwebservices.model.Post;
 import com.in28minutes.rest.webservices.restfulwebservices.model.User;
 import org.springframework.stereotype.Component;
 
@@ -16,9 +17,9 @@ public class UserDaoService {
     private static int userCount = 3;
 
     static {
-        users.add(new User(1, "Adam1", new Date()));
-        users.add(new User(2, "Adam2", new Date()));
-        users.add(new User(3, "Adam3", new Date()));
+        users.add(new User(1, "Adam", new Date()));
+        users.add(new User(2, "Eve", new Date()));
+        users.add(new User(3, "Jack", new Date()));
     }
 
     public List<User> findAll() {

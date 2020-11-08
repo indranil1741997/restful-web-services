@@ -1,6 +1,7 @@
 package com.in28minutes.rest.webservices.restfulwebservices.controller;
 
 import com.in28minutes.rest.webservices.restfulwebservices.exception.UserNotFoundException;
+import com.in28minutes.rest.webservices.restfulwebservices.model.Post;
 import com.in28minutes.rest.webservices.restfulwebservices.model.User;
 import com.in28minutes.rest.webservices.restfulwebservices.repository.UserRepository;
 import org.springframework.hateoas.EntityModel;
@@ -67,5 +68,16 @@ public class UserJPAController {
     @DeleteMapping("/jpa/users/{id}")
     public void deleteUserById(@PathVariable Integer id) {
         userRepository.deleteById(id);
+    }
+
+    @GetMapping("/jpa/users/{id}/posts")
+    public List<Post> retrieveUserPosts(@PathVariable Integer id) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (!userOptional.isPresent()) {
+            throw new UserNotFoundException("id-" + id);
+        }
+
+        return userOptional.get().getPosts();
     }
 }
